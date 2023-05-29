@@ -36,9 +36,13 @@ class ProductController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'price' => $request->price,
-            'category_id' => $request->category_id,
             'image' => $imagePath,
         ]);
+
+        //synch category with product
+
+        $product->categories()->sync([$request->category_id]);
+
 
         return response()->json($product, 201);
     }

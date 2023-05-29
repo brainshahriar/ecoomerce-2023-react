@@ -7,7 +7,7 @@ const Category = () => {
         <div className='category-main-content'>
             <div className="layout">
                 <div className="category-title">Category Title</div>
-                <Products innerPage={true}/>
+                {/* <Products innerPage={true}/> */}
             </div>
         </div>
     );

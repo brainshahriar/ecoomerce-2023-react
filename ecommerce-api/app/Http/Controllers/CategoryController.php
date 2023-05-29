@@ -36,7 +36,9 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::findOrFail($id);
+        $products = $category->products;
         $responseData = $category->toArray();
+        $responseData['products'] = $products;
         return response()->json(['data' => $responseData], 200);
     }
 }
