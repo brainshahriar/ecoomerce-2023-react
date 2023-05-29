@@ -7,7 +7,8 @@ import { fetchDataFromApi } from "../../utils/api";
 import { Context } from "../../utils/context";
 
 const Home = () => {
-  const { categories, setCategories , products , setProducts } = useContext(Context);
+  const { categories, setCategories, products, setProducts } =
+    useContext(Context);
 
   useEffect(() => {
     getCategories();
@@ -31,7 +32,7 @@ const Home = () => {
       <div className="main-content">
         <div className="layout">
           <Category categories={categories} />
-          <Products headingText="Popular Products"  products={products}/>
+          <Products headingText="Popular Products" products={products} />
         </div>
       </div>
     </>
