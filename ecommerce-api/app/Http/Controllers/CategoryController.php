@@ -15,7 +15,8 @@ class CategoryController extends Controller
         ]);
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/storage/images');
+            $imagePath = $request->file('image')->store('public/images');
+            $imagePath = str_replace('public/', '', $imagePath);
         }
         $category = Category::create([
             'title' => $request->title,

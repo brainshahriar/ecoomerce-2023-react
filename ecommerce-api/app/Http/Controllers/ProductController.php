@@ -10,13 +10,15 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return response()->json($products);
+        $responseData = $products->toArray();
+        return response()->json(['data' => $responseData], 200);
     }
 
     public function show($id)
     {
-        $product = Product::findOrFail($id);
-        return response()->json($product);
+        $products = Product::findOrFail($id);
+        $responseData = $products->toArray();
+        return response()->json(['data' => $responseData], 200);
     }
     public function store(Request $request)
     {
@@ -28,7 +30,9 @@ class ProductController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
-        $imagePath = $request->file('image')->store('piublic/storage/products');
+        $imagePath = $request->file('image')->store('piublic/products');
+
+        $imagePath = str_replace('public/', '', $imagePath);
 
         $product = Product::create([
             'title' => $request->title,

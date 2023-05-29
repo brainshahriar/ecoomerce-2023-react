@@ -22,8 +22,7 @@ const Home = () => {
 
   const getProducts = async () => {
     fetchDataFromApi("/products").then((res) => {
-      // console.log(res);
-      setProducts(res);
+      setProducts(res.data);
     });
   };
   return (
