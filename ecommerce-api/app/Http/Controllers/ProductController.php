@@ -21,10 +21,12 @@ class ProductController extends Controller
             ->with('products')
             ->get()
             ->pluck('products')
-            ->flatten();
+            ->flatten()
+            ->where('id', '!=', $id);
+
 
         $responseData = $product->toArray();
-        $responseData['related_products'] = $relatedProducts->toArray();
+        $responseData['related_products'] = $relatedProducts->values()->toArray();
 
         return response()->json(['data' => $responseData], 200);
     }
