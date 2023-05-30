@@ -7,10 +7,12 @@ import SingleProduct from "./components/SingleProduct/SingleProduct";
 import Appcontext from "./utils/context";
 import Footer from "./components/Footer/Footer";
 import Newsletter from "./components/Footer/Newsletter/Newsletter";
+import ScrollToTop from "./utils/scrollTop";
 
 function App() {
     return (
         <BrowserRouter>
+        <ScrollToTop/>
             <Appcontext>
                 <Header />
                 <Routes>
