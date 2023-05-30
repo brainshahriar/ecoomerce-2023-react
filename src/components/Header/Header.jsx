@@ -28,27 +28,25 @@ const Header = () => {
       <header className={`main-header ${scrollValue ? "sticky-header" : ""}`}>
         <div className="header-content">
           <ul className="left">
-            <li onClick={()=>navigate('/')}>Home</li>
+            <li onClick={() => navigate("/")}>Home</li>
             <li>About</li>
             <li>Categories</li>
           </ul>
-          <div className="center">ASM STORE.</div>
+          <div className="center" onClick={() => navigate("/")}>
+            ASM STORE.
+          </div>
           <div className="right">
-            <TbSearch onClick={()=> setShowSearch(true)} />
+            <TbSearch onClick={() => setShowSearch(true)} />
             <AiOutlineHeart />
-            <span className="cart-icon" onClick={()=> setShowCart(true)}>
+            <span className="cart-icon" onClick={() => setShowCart(true)}>
               <CgShoppingCart />
               <span>5</span>
             </span>
           </div>
         </div>
       </header>
-      {
-        showCart && <Cart setShowCart={setShowCart}/>
-      }
-      {
-        showSearch && <Search setShowSearch={setShowSearch}/>
-      }
+      {showCart && <Cart setShowCart={setShowCart} />}
+      {showSearch && <Search setShowSearch={setShowSearch} />}
     </>
   );
 };
