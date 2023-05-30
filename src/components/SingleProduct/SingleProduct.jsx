@@ -10,11 +10,9 @@ import RelatedProducts from "./RelatedProducts/RelatedProducts";
 import "./SingleProduct.scss";
 import useFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
-import Product from "../Products/Product/Product";
 const SingleProduct = () => {
     const { id } = useParams();
     const { data } = useFetch(`/products/${id}`);
-    console.log(data, "kkj");
     return (
         <div className="single-product-main-content">
             <div className="layout">
