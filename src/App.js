@@ -9,20 +9,20 @@ import Footer from "./components/Footer/Footer";
 import Newsletter from "./components/Footer/Newsletter/Newsletter";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Appcontext>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/category/:id" element={<Category />} />
-          <Route path="/product/:id" element={<SingleProduct />} />
-        </Routes>
-        <Newsletter />
-        <Footer/>
-      </Appcontext>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Appcontext>
+                <Header />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/category/:id" element={<Category />} />
+                    <Route path="/product/:id" element={<SingleProduct />} />
+                </Routes>
+                <Newsletter />
+                <Footer />
+            </Appcontext>
+        </BrowserRouter>
+    );
 }
 
 export default App;

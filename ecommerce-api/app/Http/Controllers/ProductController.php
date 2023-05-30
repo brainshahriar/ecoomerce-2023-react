@@ -16,10 +16,20 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $products = Product::findOrFail($id);
-        $responseData = $products->toArray();
+        $product = Product::findOrFail($id);
+        $relatedProducts = $product->categories()
+            ->with('products')
+            ->get()
+            ->pluck('products')
+            ->flatten();
+
+        $responseData = $product->toArray();
+        $responseData['related_products'] = $relatedProducts->toArray();
+
         return response()->json(['data' => $responseData], 200);
     }
+
+
     public function store(Request $request)
     {
         $request->validate([
@@ -30,7 +40,7 @@ class ProductController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
-        $imagePath = $request->file('image')->store('products','public');
+        $imagePath = $request->file('image')->store('products', 'public');
 
         $product = Product::create([
             'title' => $request->title,

@@ -15,7 +15,7 @@ class CategoryController extends Controller
         ]);
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images','public');
+            $imagePath = $request->file('image')->store('images', 'public');
         }
         $category = Category::create([
             'title' => $request->title,
@@ -28,7 +28,6 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         $responseData = $categories->toArray();
-
         return response()->json([
             'data' => $responseData
         ], 200);

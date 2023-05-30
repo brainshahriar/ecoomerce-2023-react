@@ -1,9 +1,12 @@
 import Products from "../../Products/Products";
 
-const RelatedProducts = () => {
+const RelatedProducts = ({products}) => {
+    console.log('related products', products);
     return (
         <div className="related-products">
-            <Products headingText='Related Products' />
+            {
+                products &&  <Products headingText='Related Products' products={products.related_products} />
+            }
         </div>
     );
 };
