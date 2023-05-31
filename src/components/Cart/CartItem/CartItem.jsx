@@ -3,23 +3,32 @@ import "./CartItem.scss";
 import { useContext } from "react";
 import { Context } from "../../../utils/context";
 const CartItem = () => {
-  const { cartItems , handleRemoveFromCart,handleCartProductQuantity} = useContext(Context);
+  const { cartItems, handleRemoveFromCart, handleCartProductQuantity } =
+    useContext(Context);
   return (
     <div className="cart-products">
-      {
-        cartItems.map((item,i) => {
-          return (
-            <div className="cart-product">
+      {cartItems.map((item, i) => {
+        return (
+          <div className="cart-product">
             <div className="img-container">
               <img src={`http://localhost:8000/storage/${item.image}`} alt="" />
             </div>
             <div className="prod-details">
               <span className="name">{item.title}</span>
-              <MdClose className="close-btn" onClick={()=> {handleRemoveFromCart(item)}}/>
+              <MdClose
+                className="close-btn"
+                onClick={() => {
+                  handleRemoveFromCart(item);
+                }}
+              />
               <div className="quantity-buttons">
-                <span onClick={()=>handleCartProductQuantity('dec',item)}>-</span>
+                <span onClick={() => handleCartProductQuantity("dec", item)}>
+                  -
+                </span>
                 <span>{item.quantity}</span>
-                <span onClick={()=>handleCartProductQuantity('inc',item)}>+</span>
+                <span onClick={() => handleCartProductQuantity("inc", item)}>
+                  +
+                </span>
               </div>
               <div className="text">
                 <span>{item.quantity}</span>
@@ -28,9 +37,8 @@ const CartItem = () => {
               </div>
             </div>
           </div>
-          )
-        })
-      }
+        );
+      })}
     </div>
   );
 };
