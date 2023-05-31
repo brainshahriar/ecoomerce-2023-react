@@ -51,7 +51,7 @@ const SingleProduct = () => {
                 <span>{quantity}</span>
                 <span onClick={increment}>+</span>
               </div>
-              <button className="add-to-cart-button" onClick={handleAddtoCart}>
+              <button className="add-to-cart-button" onClick={()=> {handleAddtoCart(data,quantity); setQuantity(1)}}>
                 <FaCartPlus size={20} />
                 ADD TO CART
               </button>

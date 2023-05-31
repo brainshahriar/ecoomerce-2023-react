@@ -12,26 +12,45 @@ const Appcontext = ({ children }) => {
 
   const location = useLocation();
 
-  useEffect(() => {}, [cartItems]);
+  useEffect(() => {
+    let count = 0;
+    cartItems?.map((item) => (count += item.quantity));
+    setcartCount(count);
+    let subTotal = 0;
+    cartItems.map(
+        (item) =>
+            (subTotal += item.price * item.quantity)
+    );
+    setcartSubTotal(subTotal);
+}, [cartItems]);
 
   const handleAddtoCart = (product, quantity) => {
     let items = [...cartItems];
     let index = items.findIndex((p) => p.id === product.id);
     if (index !== -1) {
-      items[index].attributes.quantity += quantity;
+      items[index].quantity += quantity;
     } else {
-      product.attributes.quantity = quantity;
+      product.quantity = quantity;
       items = [...items, product];
     }
     setcartItems(items);
   };
   const handleRemoveFromCart = (product) => {
     let items = [...cartItems];
-        items = items.filter((p)=> p.id === product.id);
-        setcartItems(items);
-        
+    items = items?.filter((p) => p.id !== product?.id);
+    setcartItems(items);
   };
-  const handleCartProductQuantity = (type, product) => {};
+  const handleCartProductQuantity = (type, product) => {
+    let items = [...cartItems];
+    let index = items.findIndex((p) => p.id === product.id);
+    if (type === "inc") {
+      items[index].quantity += 1;
+    } else if (type === "dec") {
+      if (items[index].quantity === 1) return;
+      items[index].quantity -= 1;
+    }
+    setcartItems(items);
+  };
 
   return (
     <Context.Provider
