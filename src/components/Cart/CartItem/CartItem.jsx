@@ -9,7 +9,7 @@ const CartItem = () => {
     <div className="cart-products">
       {cartItems.map((item, i) => {
         return (
-          <div className="cart-product">
+          <div key={i} className="cart-product">
             <div className="img-container">
               <img src={`http://localhost:8000/storage/${item.image}`} alt="" />
             </div>
